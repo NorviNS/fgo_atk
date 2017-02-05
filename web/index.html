@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fate/Grand Order 宝具伤害计算器</title>
+    <script type="text/javascript" src="js/constants.js"></script>
+    <script type="text/javascript" src="js/atkMatrix.js"></script>
+    <script type="text/javascript" src="js/svtData.js"></script>
+    <script type="text/javascript" src="js/cal.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+</head>
+<body>
+<div id="servant">
+    英灵：<input name="servant_no" value="2"/>
+    等级：<input name="LV" value="80"/>
+</div>
+<div id="enemy">
+    敌人：<input name="enemy_no" value="2"/>
+</div>
+<button onclick="calculate()">计算</button>
+<div id="attack_output">
+    伤害：<label id="damage"></label>
+</div>
+</body>
+</html>
