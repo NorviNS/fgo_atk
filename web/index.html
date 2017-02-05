@@ -8,18 +8,66 @@
     <script type="text/javascript" src="js/svtData.js"></script>
     <script type="text/javascript" src="js/cal.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="http://unpkg.com/iview/dist/styles/iview.css">
+    <script type="text/javascript" src="http://v1.vuejs.org/js/vue.min.js"></script>
+    <script type="text/javascript" src="http://unpkg.com/iview/dist/iview.min.js"></script>
 </head>
 <body>
-<div id="servant">
-    英灵：<input name="servant_no" value="2"/>
-    等级：<input name="LV" value="80"/>
+<div id="app" style="max-width:1200px; margin: auto">
+    <i-form :model="formItem" :label-width="80">
+        <Card>
+            <p slot="title">从者信息</p>
+            <Form-item label="从者">
+                <i-select @on-change="updateServant" :model.sync="cData.servant_no" :size="large">
+                    <i-option v-for="svt in iData.svtData" :value="svt.no" label-in-value>
+                        {{ 'No.'+ svt.no + " " + svt.name }}
+                    </i-option>
+                </i-select>
+            </Form-item>
+            <Form-item label="敌人">
+                <i-select :model.sync="cData.enemy_no">
+                    <i-option v-for="svt in iData.enemyData" :value="svt.no">{{ 'No.'+ svt.no + " " + svt.name }}
+                    </i-option>
+                </i-select>
+            </Form-item>
+            <Form-item label="等级">
+                <Radio-group :model.sync="cData.lv_select" size="large">
+                    <Radio value="max"></Radio>
+                    <Radio value="100"></Radio>
+                    <Radio value="90"></Radio>
+                    <Radio value="80"></Radio>
+                    <Radio value="70"></Radio>
+                    <Radio value="customize">
+                        自定义
+                        <Input-number :value.sync="cData.lv" :disabled="cData.lv_select!='customize'"
+                                      :max="iData.max_lv" :min="1" :step="10"></Input-number>
+                    </Radio>
+                </Radio-group>
+            </Form-item>
+            <Form-item label="宝具等级">
+                <i-select :model.sync="cData.np_lv" size="small">
+                    <i-option v-for="(index, item) in iData.np_lv_options" :value="index"
+                              :selected="{{index ==1}}" label-in-value>{{item}}
+                    </i-option>
+                </i-select>
+            </Form-item>
+            <Form-item label="宝具OC">
+                <i-select :model.sync="cData.np_oc" size="small">
+                    <i-option v-for="(index, item) in iData.np_oc_options" :value="index+1" label-in-value>{{item}}
+                    </i-option>
+                </i-select>
+            </Form-item>
+            <i-table border :columns="iData.servant_columns" :data="servant_data"></i-table>
+        </Card>
+        <Card>
+            <p slot="title">敌人信息</p>
+
+        </Card>
+    </i-form>
 </div>
-<div id="enemy">
-    敌人：<input name="enemy_no" value="2"/>
-</div>
-<button onclick="calculate()">计算</button>
-<div id="attack_output">
-    伤害：<label id="damage"></label>
-</div>
+
 </body>
+<script type="text/javascript" src="js/index.js">
+</script>
 </html>

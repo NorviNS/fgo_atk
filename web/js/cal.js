@@ -23,18 +23,21 @@ function atk(servant, enemy, buffs) {
 
     instance.random_rate = 1;   //随机数 0.9 ~1.1
 
-    var result = instance.atk * FIX_ATK_RATE * instance.random_rate
+    var atom = instance.atk * FIX_ATK_RATE
         * instance.class_rate * instance.cross_class_rate
         * (instance.np_rate / 100 * instance.npcard_rate + (1 + instance.card_buff) )
         * (1 + instance.atk_buff - instance.def_buff )
         * (1 + instance.special_atk_buff - instance.special_defend_buff + instance.np_buff)
-        * instance.np_special
-        + instance.fixed_atk_up - instance.fixed_defend;
-    return result;
+        * instance.np_special;
+    return {
+        min: atom * 0.9 + instance.fixed_atk_up - instance.fixed_defend,
+        expected: atom + instance.fixed_atk_up - instance.fixed_defend,
+        max: atom * 1.1 + instance.fixed_atk_up - instance.fixed_defend
+    };
 }
 
-function getClassRate(servant_class){
-    if(!!classRates[servant_class]){
+function getClassRate(servant_class) {
+    if (!!classRates[servant_class]) {
         return classRates[servant_class];
     }
     return 1;
