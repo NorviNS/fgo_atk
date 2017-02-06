@@ -26,7 +26,7 @@ var maxLvs = {
     3 : 70,
     4 : 80,
     5 : 90
-}
+};
 
 var classMatrix = {
     Saber: {
@@ -115,39 +115,30 @@ var classMatrix = {
     }
 };
 
-
-//
-// ServantClass.prototype = {
-//     constructor: function (innerNumber, className) {
-//         this.innerNumber = innerNumber;
-//         this.className = className;
-//     },
-//
-//     getClassRate: function () {
-//         return classRates[this.className];
-//     },
-//
-//     getCrossClassRate: function (targetClass) {
-//         return classMatrix[this.className][targetClass.innerNumber];
-//     }
-// };
-//
-// var SERVANT_CLASSES = {
-//     Saber: new ServantClass(0, "Saber"),
-//     Archer: new ServantClass(1, "Archer"),
-//     Lancer: new ServantClass(2, "Lancer"),
-//     Rider: new ServantClass(3, "Rider"),
-//     Caster: new ServantClass(4, "Caster"),
-//     Assassin: new ServantClass(5, "Assassin"),
-//     Berserker: new ServantClass(6, "Berserker"),
-//     Shielder: new ServantClass(7, "Shielder"),
-//     Ruler: new ServantClass(8, "Ruler"),
-//     "Alter Ego": new ServantClass(9, "Alter Ego"),
-//     Avenger: new ServantClass(10, "Avenger"),
-//     "Beast I": new ServantClass(11, "Beast I"),
-//     "Beast II": new ServantClass(12, "Beast II")
-// };
-
-
+var attributeMatrix = {
+    "人" :{
+        "天" : 1.1,
+        "地" :0.9,
+        default :1
+    },
+    "天":{
+        "地" : 1.1,
+        "人" :0.9,
+        default :1
+    },
+    "地":{
+        "人" : 1.1,
+        "天" :0.9,
+        default :1
+    },
+    "星":{
+        "兽" : 1.1,
+        default :1
+    },
+    "兽":{
+        "星" : 1.1,
+        default :1
+    }
+};
 
 

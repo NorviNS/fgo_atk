@@ -1,4 +1,4 @@
-function atk(servant, enemy, buffs) {
+function atk(servant,servant_prototype, enemy_prototype, buffs) {
     var FIX_ATK_RATE = 0.23;
     var instance = {};
     instance.atk = servant.attack; // 字面白值
@@ -9,9 +9,9 @@ function atk(servant, enemy, buffs) {
     instance.atk_buff = 0;    //攻击力buff
     instance.def_buff = 0;    //敌方防御力buff
 
-    instance.class_rate = getClassRate(servant.class);             //职阶加成
-    instance.cross_class_rate = getClassEffect(servant.class, enemy.class); //职阶克制
-    instance.cross_type_rate = getTypeEffect(servant, enemy); //阵营相性
+    instance.class_rate = getClassRate(servant_prototype.class);             //职阶加成
+    instance.cross_class_rate = getClassEffect(servant_prototype.class, enemy_prototype.class); //职阶克制
+    instance.cross_type_rate = getTypeEffect(servant_prototype, enemy_prototype); //阵营相性
 
     instance.special_atk_buff = 0;      //特攻威力buff
     instance.special_defend_buff = 0;   //敌方特防buff
@@ -32,7 +32,8 @@ function atk(servant, enemy, buffs) {
 
     var atom = instance.atk * FIX_ATK_RATE
         * instance.class_rate * instance.cross_class_rate
-        * (instance.np_rate / 100 * instance.npcard_rate + (1 + instance.card_buff) )
+        * (instance.np_rate / 100 * instance.npcard_rate)
+        * (1 + instance.card_buff)
         * (1 + instance.atk_buff - instance.def_buff )
         * (1 + instance.special_atk_buff - instance.special_defend_buff + instance.np_buff)
         * instance.np_special;
@@ -50,11 +51,12 @@ function getClassRate(servant_class) {
     return 1;
 }
 
-function getClassEffect(servantClass, enemyClass) {
-    return classMatrix[servantClass][enemyClass] ||
+function getClassEffect(servantClass, enemy_prototypeClass) {
+    return classMatrix[servantClass][enemy_prototypeClass] ||
         classMatrix[servantClass]["default"];
 }
 
-function getTypeEffect(servant, enemy) {
-    return 1;
+function getTypeEffect(servant_prototype, enemy_prototype) {
+    return attributeMatrix[servant_prototype.attribute][enemy_prototype.attribute] ||
+        attributeMatrix[servant_prototype.attribute]["default"];;
 }

@@ -5,8 +5,9 @@
     <title>Fate/Grand Order 宝具伤害计算器</title>
     <script type="text/javascript" src="js/constants.js"></script>
     <script type="text/javascript" src="js/atkMatrix.js"></script>
-    <script type="text/javascript" src="js/buffs.js"></script>
-    <script type="text/javascript" src="js/svtData.js"></script>
+    <script type="text/javascript" src="js/buff_types.js"></script>
+    <script type="text/javascript" src="js/svtData2.js"></script>
+    <script type="text/javascript" src="js/svtBuff.js"></script>
     <script type="text/javascript" src="js/cal.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
 
@@ -64,6 +65,21 @@
         <Card>
             <p slot="title">BUFF</p>
             <i-table border :columns="iData.buff_columns" :data="iBuff_data"></i-table>
+            <Form-item label="Buff 来源：从者">
+                <i-select :size="small">
+                    <i-option v-for="(index, item) in iBuff_fromSvt_select" :value="item.no"
+                              label-in-value>{{item.name}}
+                    </i-option>
+                </i-select>
+            </Form-item>
+            <Form-item label="Buff 来源：类型">
+                <i-select size="small">
+                    <i-option v-for="(index, item) in iBuff_fromType_select" :value="item.svtName"
+                              label-in-value>{{item.svtName}}
+                    </i-option>
+                </i-select>
+                <i-button>SS</i-button>
+            </Form-item>
         </Card>
     </i-form>
 </div>

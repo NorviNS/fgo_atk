@@ -11,7 +11,7 @@ var svtData = [
             rates: [],
             type: "Arts",
             target: "无直接伤害",
-            effects: [{}]
+            npBuff: []
         },
         traits: ["秩序","善","骑乘技能","人型","从者","天或地从者","亚从者"],
         available_after : 0,
@@ -32,7 +32,7 @@ var svtData = [
             rates: [400,500,550,575,600],
             type: "Buster",
             target: "全体",
-            extra_effects: []
+            npBuff: []
         },
         traits: ["秩序","善","骑乘技能","人型","从者","天或地从者"],
         available_after : 0,
