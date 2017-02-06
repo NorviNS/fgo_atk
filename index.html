@@ -5,12 +5,13 @@
     <title>Fate/Grand Order 宝具伤害计算器</title>
     <script type="text/javascript" src="js/constants.js"></script>
     <script type="text/javascript" src="js/atkMatrix.js"></script>
+    <script type="text/javascript" src="js/buffs.js"></script>
     <script type="text/javascript" src="js/svtData.js"></script>
     <script type="text/javascript" src="js/cal.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
 
     <link rel="stylesheet" type="text/css" href="//unpkg.com/iview/dist/styles/iview.css">
-    <script type="text/javascript" src="//v1.vuejs.org/js/vue.min.js"></script>
+    <script type="text/javascript" src="//v1.vuejs.org/js/vue.js"></script>
     <script type="text/javascript" src="//unpkg.com/iview/dist/iview.min.js"></script>
 </head>
 <body>
@@ -48,7 +49,7 @@
             <Form-item label="宝具等级">
                 <i-select :model.sync="cData.np_lv" size="small">
                     <i-option v-for="(index, item) in iData.np_lv_options" :value="index"
-                              :selected="{{index ==1}}" label-in-value>{{item}}
+                              label-in-value>{{item}}
                     </i-option>
                 </i-select>
             </Form-item>
@@ -61,8 +62,8 @@
             <i-table border :columns="iData.servant_columns" :data="servant_data"></i-table>
         </Card>
         <Card>
-            <p slot="title">敌人信息</p>
-
+            <p slot="title">BUFF</p>
+            <i-table border :columns="iData.buff_columns" :data="iBuff_data"></i-table>
         </Card>
     </i-form>
 </div>

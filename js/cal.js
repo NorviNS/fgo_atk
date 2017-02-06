@@ -2,8 +2,9 @@ function atk(servant, enemy, buffs) {
     var FIX_ATK_RATE = 0.23;
     var instance = {};
     instance.atk = servant.attack; // 字面白值
+    instance.np = servant.np;
     instance.np_rate = servant.np.rate;    //宝具倍率
-    instance.npcard_rate = servant.np.type.rate;  //宝具颜色补正
+    instance.npcard_rate = CARDS[servant.np.type].rate;  //宝具颜色补正
     instance.card_buff = 0;   //卡牌buff
     instance.atk_buff = 0;    //攻击力buff
     instance.def_buff = 0;    //敌方防御力buff
@@ -22,6 +23,12 @@ function atk(servant, enemy, buffs) {
     instance.fixed_defend = 0;  //敌方固定减伤buff
 
     instance.random_rate = 1;   //随机数 0.9 ~1.1
+
+    if(!!buffs){
+        buffs.forEach(function (buff) {
+            buff.type.process(instance,buff.number);
+        });
+    }
 
     var atom = instance.atk * FIX_ATK_RATE
         * instance.class_rate * instance.cross_class_rate

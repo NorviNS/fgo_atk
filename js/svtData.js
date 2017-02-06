@@ -9,7 +9,7 @@ var svtData = [
             easy_max: false,
             name: "假象宝具 拟拟展开/人理之础",
             rates: [],
-            type: CARDS.Arts,
+            type: "Arts",
             target: "无直接伤害",
             effects: [{}]
         },
@@ -17,7 +17,8 @@ var svtData = [
         available_after : 0,
         specialBonus:{
             "魔法少女" : 100
-        }
+        },
+        passive_buff : []
     },
     {
         no: 2,
@@ -29,20 +30,25 @@ var svtData = [
             easy_max: false,
             name: "誓约胜利之剑",
             rates: [400,500,550,575,600],
-            type: CARDS.Buster,
+            type: "Buster",
             target: "全体",
             extra_effects: []
         },
-        traits: ["秩序","善","骑乘技能","人型","从者","天或地从者","亚从者"],
+        traits: ["秩序","善","骑乘技能","人型","从者","天或地从者"],
         available_after : 0,
         specialBonus:{
             "魔法少女" : 100
-
         },
         active_skill : {
 
-        }
-
+        },
+        passive_buff : [
+            {
+                name : "骑乘",
+                type : BUFF_TYPES.BU,
+                number : 8
+            }
+        ]
     }
 ];
 
